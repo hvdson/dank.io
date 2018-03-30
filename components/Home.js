@@ -3,6 +3,8 @@ import { Button, TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import Expo from 'expo';
 import KICK from '../assets/Kick.wav'
 import CLAP from '../assets/Clap.wav'
+import HAT from '../assets/Hat.wav'
+import TOM from '../assets/Tom.wav'
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -32,6 +34,26 @@ export default class Home extends React.Component {
     }
   }
 
+    _playHat = async () => {
+    const soundObject = new Expo.Audio.Sound();
+    try {
+      await soundObject.loadAsync(HAT);
+      await soundObject.playAsync();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+    _playTom = async () => {
+    const soundObject = new Expo.Audio.Sound();
+    try {
+      await soundObject.loadAsync(TOM);
+      await soundObject.playAsync();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   render() {
     return ( 
@@ -48,12 +70,12 @@ export default class Home extends React.Component {
         </View>
 
         <View style={styles.row}>
-          <TouchableOpacity style={styles.clap} onPress={this._playClap}>
-            <Text>CLAP</Text>
+          <TouchableOpacity style={styles.tom} onPress={this._playTom}>
+            <Text>TOM</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.kick} onPress={this._playKick}>
-            <Text>KICK</Text>
+          <TouchableOpacity style={styles.hat} onPress={this._playHat}>
+            <Text>HAT</Text>
           </TouchableOpacity>
           
         </View>
@@ -63,13 +85,13 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    Expo.Audio.setAudioModeAsync({
-      allowsRecordingIOS: false,
-      interruptionModeIOS: Expo.Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-      playsInSilentModeIOS: true,
-      shouldDuckAndroid: true,
-      interruptionModeAndroid: Expo.Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-    });
+    // Expo.Audio.setAudioModeAsync({
+    //   allowsRecordingIOS: false,
+    //   interruptionModeIOS: Expo.Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+    //   playsInSilentModeIOS: true,
+    //   shouldDuckAndroid: true,
+    //   interruptionModeAndroid: Expo.Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+    // });
   }
 }
 
@@ -92,6 +114,18 @@ const styles = StyleSheet.create({
   clap: {
     flex: 1,
     backgroundColor: 'lightblue',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  hat: {
+    flex: 1,
+    backgroundColor: 'green',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  tom: {
+    flex: 1,
+    backgroundColor: 'yellow',
     alignItems: 'center',
     justifyContent: 'center'
   },
