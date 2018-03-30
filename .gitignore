@@ -6,6 +6,9 @@
 # dependencies
 /node_modules
 
+#OSX
+.DS_Store
+
 # misc
 .env.local
 .env.development.local
