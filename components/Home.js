@@ -4,7 +4,7 @@ import Expo from 'expo';
 import KICK from '../assets/Kick.wav'
 import CLAP from '../assets/Clap.wav'
 import HAT from '../assets/Hat.wav'
-import TOM from '../assets/Tom.wav'
+import COWBELL from '../assets/Cowbell.wav'
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -44,10 +44,10 @@ export default class Home extends React.Component {
     }
   }
 
-    _playTom = async () => {
+    _playCowbell = async () => {
     const soundObject = new Expo.Audio.Sound();
     try {
-      await soundObject.loadAsync(TOM);
+      await soundObject.loadAsync(COWBELL);
       await soundObject.playAsync();
     } catch (error) {
       console.log(error);
@@ -58,7 +58,6 @@ export default class Home extends React.Component {
   render() {
     return ( 
       <View style={styles.container}>
-
         <View style={styles.row}>
           <TouchableOpacity style={styles.kick} onPress={this._playKick}>
             <Text>KICK</Text>
@@ -70,16 +69,14 @@ export default class Home extends React.Component {
         </View>
 
         <View style={styles.row}>
-          <TouchableOpacity style={styles.tom} onPress={this._playTom}>
-            <Text>TOM</Text>
+          <TouchableOpacity style={styles.cowbell} onPress={this._playCowbell}>
+            <Text>COWBELL</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.hat} onPress={this._playHat}>
             <Text>HAT</Text>
           </TouchableOpacity>
-          
         </View>
-      
       </View>
     )
   }
@@ -123,7 +120,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  tom: {
+  cowbell: {
     flex: 1,
     backgroundColor: 'yellow',
     alignItems: 'center',
